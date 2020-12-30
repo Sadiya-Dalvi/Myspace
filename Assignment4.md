@@ -25,7 +25,7 @@ gcloud beta dataproc clusters create ${CLUSTER_NAME} \
   
   ```
 <kbd>
-<img src="https://github.com/Sadiya-Dalvi/Myspace/blob/main/Images/cluster_to_Read_data_Frombq.png" alt="Create Cluster" width="700" height="300">
+<img src="https://github.com/Sadiya-Dalvi/SDProfile/blob/main/Images/cluster_to_Read_data_Frombq.png" alt="Create Cluster" width="700" height="300">
 </kbd>
 
 
