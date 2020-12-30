@@ -93,3 +93,77 @@ After sometime the data gets loaded in the bigquery table "wordcount_output" as 
 <img src="https://github.com/Sadiya-Dalvi/SDProfile/blob/main/Images/wordcount_data_loaded_in_bigquery.png" alt="bq-output" width="700" height="300">
 </kbd>
 
+# Uploaded data using a CSV file into Datastore
+
+Wrote the following script to upload data to datastore
+
+```import sys
+import csv
+import datetime
+from google.cloud import datastore
+
+#{
+ #   "kind": "User",
+  #  "UserId": 1929,
+ #   "Gender": "F",
+ #   "Age": 1,
+ #   "Occupation": 10,
+  #  "Zip-code": 91107
+  #},
+
+client = datastore.Client()
+
+with open('users.csv') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    entity = {}
+    i = 0
+    for row in csv_reader:
+
+        entity['kind'] = 'User'
+        entity['UserId'] = row[1]
+        entity['Gender'] = row[2]
+        entity['Age'] = row[3]
+        entity['Occupation'] = row[4]
+        entity['Zip-code'] = row[5]
+
+        parent_key = None
+        #parent_key = client.key("Movie", entity["MovieId"],
+        #                      "Rating", entity["UserId"])
+
+        key = client.key('User', entity['UserId'], parent=parent_key)
+
+        datastore_ent = datastore.Entity(key)
+        #print(entity)
+        datastore_ent.update(entity) #Include properties+id
+        client.put(datastore_ent)
+        i = i + 1
+        if i % 1000 == 0:
+            print(i)
+```
+output is as below:
+
+<kbd>
+<img src="https://github.com/Sadiya-Dalvi/SDProfile/blob/main/Images/datastore1.png" alt="bq2" width="700" height="300">
+</kbd>
+
+Wrote a simple query:
+
+```
+import sys
+import csv
+import datetime
+from google.cloud import datastore
+
+client = datastore.Client()
+
+query = client.query(kind='User')
+
+query_iter = query.fetch()
+for entity in query_iter:
+    print(entity)
+ ```
+output is as below:
+
+<kbd>
+<img src="https://github.com/Sadiya-Dalvi/SDProfile/blob/main/Images/datastore2.png" alt="bq2" width="700" height="300">
+</kbd>
