@@ -1,4 +1,5 @@
-# The Assignment 4 has the following parts: \
+GHCI Techpathways Assignment 4 has the following parts: 
+
 [Part 1](https://github.com/Sadiya-Dalvi/Myspace/blob/main/Assignment4/Part1.md) \
 [Part 2](https://github.com/Sadiya-Dalvi/Myspace/blob/main/Assignment4/Part2.md) \
 [Part 3](https://github.com/Sadiya-Dalvi/Myspace/blob/main/Assignment4/Part3.md) \
